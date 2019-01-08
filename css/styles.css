@@ -155,11 +155,16 @@ CHART STYLES
   text-align: center;
 }
 
+.traffic-header {
+  text-align: center;
+}
+
 .traffic-list {
   display: flex;
   font-weight: 700;
   list-style-type: none;
   padding-left: 0;
+  text-align: center;
 }
 
 .traffic-list-active {
@@ -168,8 +173,13 @@ CHART STYLES
   color: #FFF;
 }
 
-.traffic-list li {
-  margin-right: 1em;
+.traffic-list-item:first-child {
+  margin-left: 0;
+}
+
+.traffic-list-item {
+  cursor: pointer;
+  margin: 0 auto;
   padding: 5px;
 }
 
@@ -573,7 +583,11 @@ MEDIA QUERIES
     margin: 0 auto;
   }
 
-  .traffic-list li:hover {
+  .traffic-list-item {
+    margin: 0 1em;
+  }
+
+  .traffic-list-item:hover {
     background-color: rgba(133, 219, 128, 0.7);
     border-radius: 5px;
     color: #FFF;
