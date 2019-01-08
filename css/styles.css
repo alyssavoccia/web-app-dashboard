@@ -13,6 +13,28 @@ body {
   font-weight: 300;
 }
 
+/* ============================
+  KEYFRAMES
+============================ */
+@keyframes rock {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(40deg);
+  }
+  50% {
+    transform: rotate(-42deg);
+  }
+  75% {
+    transform: rotate(37deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+
 /* ====================
 HEADER STYLES
 =====================*/
@@ -22,9 +44,51 @@ HEADER STYLES
   text-align: center;
 }
 
+.notification-container {
+  display: inline-block;
+  position: relative;
+}
+
+.bell-badge {
+  background-color: #85DB80;
+  border-radius: 50%;
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  right: 0;
+}
+
 .bell-icon {
+  cursor: pointer;
   height: 50px;
   width: 50px;
+}
+
+.notification-content {
+  background-color: #FBFBFB;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  color: #8F8F8F;
+  display: none;
+  padding: 10px;
+  position: absolute;
+  right: -100px;
+  min-width: 250px;
+  z-index: 100;
+}
+
+.show {
+  display:block;
+}
+
+.hide {
+  display: none;
+}
+
+.notification-content p:hover {
+  border-radius: 5px;
+  color: #4D4C72;
+  cursor: pointer;
 }
 
 .profile-info {
@@ -498,6 +562,19 @@ MEDIA QUERIES
     width: 25px; 
   }
 
+  .bell-icon:hover {
+    animation: rock 1s ease-out backwards;
+  }
+
+  .bell-badge {
+    background-color: #85DB80;
+    border-radius: 50%;
+    position: absolute;
+    padding: 5px;
+    top: 20%;
+    right: 30%;
+  }
+
   .profile-info {
     border-left: 1px solid #5D61BF;
     margin: 5px 0;
@@ -528,9 +605,9 @@ MEDIA QUERIES
   }
 
   .dashboard-iconL:hover path,
-.members-icon:hover path,
-.visits-icon:hover path,
-.settings-icon:hover path {
+  .members-icon:hover path,
+  .visits-icon:hover path,
+  .settings-icon:hover path {
   fill: #FFF;
 }
 
