@@ -415,6 +415,20 @@ MESSAGE USER & SETTINGS
   width: 100%;
 }
 
+.message-form-alert {
+  color: #4D4C72;
+  font-weight: 700;
+  font-style: italic;
+  font-size: .9rem;
+  margin-top: 0;
+}
+
+.user-alert,
+.message-alert,
+.success-message {
+  display: none;
+}
+
 .message-button:hover,
 .save-button:hover,
 .cancel-button:hover {
