@@ -23,6 +23,7 @@ sendButton.addEventListener('click', (e) => {
   let userAlert = document.querySelector('.user-alert');
   let messageAlert = document.querySelector('.message-alert');
   let successMessage = document.querySelector('.success-message');
+  // Checks to see if the user has entered anything into the fields
   if (userSearch === '') {
     userAlert.style.display = 'block';
   } else {
@@ -74,47 +75,44 @@ window.onload = function() {
   if(supportsLocalStorage()) {
     // Initialize recent settings
     let recentSettings = getRecentSettings();
-    if (recentSettings[0] === 'true') {
-      emailNotif.checked = true;
+    // Checks to see if there are saved options
+    if (recentSettings[0] == null || recentSettings[1] == null) {
+      emailNotif.setAttribute('checked', true);
+      profilePublic.setAttribute('checked', true);
+      // What to do if options have been saved
     } else {
-      emailNotif.checked = false;
-    }
-    if (recentSettings[1] === 'true') {
-      profilePublic.checked = true;
-    } else {
-      profilePublic.checked = false;
-    }
-    if (recentSettings[2] == "eastern") {
-      timezone.value = 'eastern';
-    } else if (recentSettings[2] == 'central') {
-      timezone.value = 'central';
-    } else if (recentSettings[2] == 'mountain') {
-      timezone.value = 'mountain';
-    } else if (recentSettings[2] == 'pacific') {
-      timezone.value = 'pacific';
-    }
-
-    // Event listeners for on/off switches
-    emailNotif.addEventListener('click', () => {
-      if (emailNotif.checked) {
-        emailNotif.removeAttribute('checked');
-        console.log(emailNotif);
-      } else if (!emailNotif.checked) {
-        emailNotif.setAttribute('checked', true);
-        console.log(emailNotif);
+      if (recentSettings[0] === 'true') {
+        emailNotif.checked = true;
+      } else {
+        emailNotif.checked = false;
       }
-    });
+      if (recentSettings[1] === 'true') {
+        profilePublic.checked = true;
+      } else {
+        profilePublic.checked = false;
+      }
+      if (recentSettings[2] == "eastern") {
+        timezone.value = 'eastern';
+      } else if (recentSettings[2] == 'central') {
+        timezone.value = 'central';
+      } else if (recentSettings[2] == 'mountain') {
+        timezone.value = 'mountain';
+      } else if (recentSettings[2] == 'pacific') {
+        timezone.value = 'pacific';
+      }
+    }
+    
 
     
     // Event listener for save on settings form
     saveButton.addEventListener('click', (e) => {  
       e.preventDefault();
-      if (emailNotif.checked) {
+      if (emailNotif.checked == true) {
         localStorage.setItem('email_val', true);
       } else {
         localStorage.setItem('email_val', false);
       }
-      if (profilePublic.checked) {
+      if (profilePublic.checked == true) {
         localStorage.setItem('profile_val', true);
       } else {
         localStorage.setItem('profile_val', false);
@@ -127,22 +125,24 @@ window.onload = function() {
     // Event listener for cancel on settings form
     cancelButton.addEventListener('click', (e) => {
       e.preventDefault();
+      // Gets the values the user has currently selected
       let selectedEmail = document.getElementById('send-email-notifications').checked;
-      console.log(selectedEmail);
       let selectedProfile = document.getElementById('set-profile-public').checked;
       // Gets the current values for the different options
-      let savedEmail = Boolean(recentSettings[0]);
-      console.log(savedEmail);
-      let savedProfile = Boolean(recentSettings[1]);
+      let recentSettings = getRecentSettings();
+      let savedEmail = recentSettings[0] == 'false' ? false : true;
+      let savedProfile = recentSettings[1] == 'false' ? false: true;
       let savedTimezone = recentSettings[2];
+      // Checks to see if the users options match what was saved
       if (savedEmail !== selectedEmail) {
         emailNotif.checked = savedEmail;
-        
       }
       if (savedProfile !== selectedProfile) {
-        profilePublic = savedProfile;
+        profilePublic.checked = savedProfile;
       }
-      if (savedTimezone !== timezone.value) {
+      if (timezone.value == '') {
+        timezone.value = '';
+      } else if (savedTimezone !== timezone.value) {
         timezone.value = savedTimezone;
       }
     });
