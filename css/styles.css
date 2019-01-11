@@ -13,6 +13,9 @@ body {
   font-weight: 300;
 }
 
+canvas {
+  max-width: 100%;
+}
 /* ============================
   KEYFRAMES
 ============================ */
@@ -113,7 +116,6 @@ NAVIGATION STYLES
 .nav-list {
   align-items: center;
   display: flex;
-  height: 100%;
   list-style-type: none;
   margin: 0 auto;
   padding-left: 0; 
@@ -607,6 +609,10 @@ MEDIA QUERIES
     margin-top: 1em;
   }
 
+  .nav-list li {
+    margin-bottom: 2em;
+  }
+
   a {
     margin-bottom: 2em;
   }
@@ -818,5 +824,3 @@ MEDIA QUERIES
     margin-top: 5px;
   }
 }
-
-

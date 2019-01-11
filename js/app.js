@@ -143,7 +143,11 @@ window.onload = function() {
       if (timezone.value == '') {
         timezone.value = '';
       } else if (savedTimezone !== timezone.value) {
-        timezone.value = savedTimezone;
+        if (savedTimezone == null) {
+          timezone.value = '';
+        } else {
+          timezone.value = savedTimezone;
+        }
       }
     });
   }
